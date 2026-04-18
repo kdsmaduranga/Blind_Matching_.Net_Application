@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ProjectApprovalSystem.Models.Project>
+<h1>My Projects</h1>
+<p><a asp-action="Create" class="btn btn-primary">Submit New</a></p>
+<table class="table"><thead><tr><th>Title</th><th>Area</th><th>Status</th></tr></thead><tbody>
+@foreach (var item in Model) {
+    <tr><td>@item.Title</td><td>@item.ResearchArea?.Name</td><td>@item.Status</td></tr>
+}</tbody></table>

@@ -1,0 +1,23 @@
+﻿@page "/CompleteProfile"
+@model ProjectApprovalSystem.Pages.CompleteProfileModel
+@{
+    ViewData["Title"] = "Complete Your Profile";
+}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-gradient-primary text-white text-center py-4 border-0"><i class="fas fa-user-edit fa-3x mb-3"></i><h2 class="fw-bold mb-0">Complete Profile</h2></div>
+            <div class="card-body p-4 p-lg-5">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+                    <div class="form-floating mb-3"><input asp-for="FullName" class="form-control bg-dark border-secondary text-light" placeholder="Full Name" /><label asp-for="FullName" class="text-secondary"></label><span asp-validation-for="FullName" class="text-danger small"></span></div>
+                    <div class="form-floating mb-4"><select asp-for="SelectedRole" class="form-select bg-dark border-secondary text-light"><option value="" disabled selected>Select role...</option><option value="Student">Student</option><option value="Supervisor">Supervisor</option></select><label asp-for="SelectedRole" class="text-secondary"></label><span asp-validation-for="SelectedRole" class="text-danger small"></span></div>
+                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold"><i class="fas fa-save me-2"></i>Save Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

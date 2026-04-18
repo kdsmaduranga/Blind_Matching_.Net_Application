@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ProjectApprovalSystem.Models.Project>
+@{
+    ViewData["Title"] = "My Projects";
+}
+<h1 class="mb-4">My Projects</h1>
+@if (User.IsInRole("Student"))
+{
+    <p><a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus-circle me-2"></i>Submit New Proposal</a></p>
+}
+<table class="table">
+    <thead><tr><th>Title</th><th>Research Area</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.ResearchArea?.Name</td>
+                <td><span class="badge @(item.Status == "Matched" ? "bg-success" : "bg-warning")">@item.Status</span></td>
+                <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

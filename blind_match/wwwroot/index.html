@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindMatch — Project Approval System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080b14;
+  --bg2: #0d1020;
+  --surface: rgba(255,255,255,0.035);
+  --surface2: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --gold: #c9933a;
+  --gold2: #e8b560;
+  --teal: #00c9a7;
+  --teal2: #4fffde;
+  --blue: #4a90d9;
+  --red: #e05555;
+  --purple: #9b7fe8;
+  --text: #e8e4dc;
+  --text2: #8a8a9a;
+  --text3: #5a5a6a;
+  --sidebar-w: 260px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ── BACKGROUND ── */
+.bg-orbs {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18;
+  animation: orb-float 18s ease-in-out infinite;
+}
+.orb1 { width: 500px; height: 500px; background: #c9933a; top: -10%; left: -10%; animation-delay: 0s; }
+.orb2 { width: 400px; height: 400px; background: #00c9a7; top: 40%; right: -5%; animation-delay: -6s; }
+.orb3 { width: 350px; height: 350px; background: #4a90d9; bottom: -10%; left: 30%; animation-delay: -12s; }
+
+@keyframes orb-float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.05); }
+  66% { transform: translate(-20px,30px) scale(0.95); }
+}
+
+/* ── VIEWS SYSTEM ── */
+.view { display: none; position: relative; z-index: 1; }
+.view.active { display: flex; }
+
+/* ════════════════════════════════════
+   AUTH PAGES
+════════════════════════════════════ */
+.auth-wrap {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  flex-direction: column;
+  gap: 0;
+}
+
+.auth-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 4px;
+  text-align: center;
+}
+.auth-logo span { color: var(--gold); }
+
+.auth-tagline {
+  color: var(--text2);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  animation: card-in 0.45s cubic-bezier(0.16,1,0.3,1) both;
+}
+.auth-card.wide { max-width: 580px; }
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.auth-subtitle { color: var(--text2); font-size: 0.85rem; margin-bottom: 28px; }
+
+/* ── FORMS ── */
+.form-group { margin-bottom: 18px; }
+.form-row { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+
+label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 7px;
+}
+
+input[type=text], input[type=email], input[type=password],
+select, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  background: rgba(201,147,58,0.06);
+  box-shadow: 0 0 0 3px rgba(201,147,58,0.12);
+}
+input::placeholder, textarea::placeholder { color: var(--text3); }
+select option { background: #1a1f2e; color: var(--text); }
+textarea { resize: vertical; min-height: 90px; }
+
+.form-error { color: #ef8a8a; font-size: 0.78rem; margin-top: 5px; }
+
+/* ── BUTTONS ── */
+.btn, .btn-outline, .btn-danger, .btn-ghost, .btn-sm, .btn-teal {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  border: 1px solid transparent; transition: all var(--transition);
+  text-decoration: none; white-space: nowrap;
+}
+.btn {
+  background: linear-gradient(135deg, var(--gold), #b07c2a);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(201,147,58,0.3);
+}
+.btn:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(201,147,58,0.4); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-full { width: 100%; justify-content: center; }
+
+.btn-outline {
+  background: transparent; color: var(--text2);
+  border-color: var(--border2);
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,147,58,0.06); }
+
+.btn-danger {
+  background: rgba(224,85,85,0.12); color: var(--red);
+  border-color: rgba(224,85,85,0.3);
+}
+.btn-danger:hover { background: rgba(224,85,85,0.2); }
+
+.btn-teal {
+  background: rgba(0,201,167,0.12); color: var(--teal);
+  border-color: rgba(0,201,167,0.3);
+}
+.btn-teal:hover { background: rgba(0,201,167,0.2); }
+
+.btn-ghost {
+  background: transparent; color: var(--text2);
+  border-color: transparent; padding: 8px 14px;
+}
+.btn-ghost:hover { background: var(--surface2); color: var(--text); }
+
+.btn-sm { padding: 7px 14px; font-size: 0.8rem; }
+
+.auth-link {
+  text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--text2);
+}
+.auth-link a { color: var(--gold); text-decoration: none; font-weight: 600; }
+.auth-link a:hover { color: var(--gold2); }
+
+/* ── ROLE CARDS ── */
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.role-card {
+  padding: 14px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  cursor: pointer; transition: all var(--transition);
+  text-align: center;
+}
+.role-card:hover { border-color: var(--gold); background: rgba(201,147,58,0.05); }
+.role-card.selected { border-color: var(--gold); background: rgba(201,147,58,0.1); }
+.role-card .ri { font-size: 1.5rem; margin-bottom: 4px; }
+.role-card .rl { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+
+/* ════════════════════════════════════
+   DASHBOARD LAYOUT
+════════════════════════════════════ */
+.dash-wrap { min-height: 100vh; display: flex; width: 100%; }
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: rgba(8,11,20,0.95);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: fixed; left: 0; top: 0; bottom: 0;
+  z-index: 100;
+  backdrop-filter: blur(30px);
+}
+
+.sidebar-logo {
+  padding: 28px 22px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.brand span { color: var(--gold); }
+.sidebar-logo small {
+  font-size: 0.68rem; color: var(--text3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: block; margin-top: 2px;
+}
+
+.sidebar-user {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.avatar {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+}
+.sidebar-user-info .name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.role-badge {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px; margin-top: 3px;
+}
+
+.sidebar-nav { flex: 1; padding: 18px 12px 10px; overflow-y: auto; }
+.nav-section {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text3);
+  padding: 0 10px; margin: 14px 0 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all var(--transition);
+  font-size: 0.875rem; font-weight: 500; color: var(--text2);
+  margin-bottom: 2px; user-select: none;
+}
+.nav-item svg { width: 17px; height: 17px; flex-shrink: 0; }
+.nav-item:hover { background: var(--surface2); color: var(--text); }
+.nav-item.active { background: rgba(201,147,58,0.12); color: var(--gold); }
+.nav-item.active svg { stroke: var(--gold); }
+
+.sidebar-bottom {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* MAIN AREA */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,11,20,0.8);
+  backdrop-filter: blur(20px);
+  position: sticky; top: 0; z-index: 50;
+}
+.topbar-title { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+
+.content { padding: 32px; flex: 1; }
+
+/* PANELS */
+.panel { display: none; animation: panel-in 0.3s ease both; }
+.panel.active { display: block; }
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── STATS ── */
+.stats-row { display: grid; gap: 16px; margin-bottom: 24px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1100px) { .grid-4 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 700px) { .grid-4,.grid-3 { grid-template-columns: 1fr; } }
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex; flex-direction: column;
+  gap: 8px; position: relative; overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.stat-card.teal::before { background: var(--teal); }
+.stat-card.gold::before { background: var(--gold); }
+.stat-card.blue::before { background: var(--blue); }
+.stat-card.purple::before { background: var(--purple); }
+.stat-card.red::before { background: var(--red); }
+
+.stat-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); }
+.stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--text); line-height: 1; }
+.stat-icon { position: absolute; top: 20px; right: 20px; font-size: 1.6rem; opacity: 0.2; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 600; color: var(--text);
+}
+.card-body { padding: 22px; }
+
+/* ── PROJECT CARDS ── */
+.project-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.project-card:hover { border-color: var(--border2); background: var(--surface2); }
+.project-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.project-card-top h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.project-card p { font-size: 0.84rem; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+.project-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+/* ── TAGS / BADGES ── */
+.area-tag, .tech-tag {
+  display: inline-block; font-size: 0.72rem; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+}
+.area-tag { background: rgba(201,147,58,0.12); color: var(--gold); border: 1px solid rgba(201,147,58,0.25); }
+.tech-tag { background: rgba(74,144,217,0.12); color: var(--blue); border: 1px solid rgba(74,144,217,0.2); margin-right: 5px; }
+
+.tech-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+}
+.badge-pending { background: rgba(201,147,58,0.12); color: var(--gold); border: 1px solid rgba(201,147,58,0.3); }
+.badge-review { background: rgba(74,144,217,0.12); color: var(--blue); border: 1px solid rgba(74,144,217,0.3); }
+.badge-matched { background: rgba(0,201,167,0.12); color: var(--teal); border: 1px solid rgba(0,201,167,0.3); }
+.badge-confirmed { background: rgba(0,201,167,0.12); color: var(--teal); border: 1px solid rgba(0,201,167,0.3); }
+.badge-interested { background: rgba(155,127,232,0.12); color: var(--purple); border: 1px solid rgba(155,127,232,0.3); }
+.badge-withdrawn { background: rgba(224,85,85,0.12); color: var(--red); border: 1px solid rgba(224,85,85,0.3); }
+.badge-active { background: rgba(0,201,167,0.12); color: var(--teal); border: 1px solid rgba(0,201,167,0.3); }
+.badge-inactive { background: rgba(224,85,85,0.12); color: var(--red); border: 1px solid rgba(224,85,85,0.3); }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th {
+  text-align: left; padding: 10px 14px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--text3);
+  border-bottom: 1px solid var(--border);
+}
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 50px 24px;
+}
+.es-icon { font-size: 2.8rem; margin-bottom: 12px; opacity: 0.4; }
+.empty-state h3 { font-size: 1.05rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+.empty-state p { font-size: 0.84rem; color: var(--text3); margin-bottom: 18px; }
+
+/* ── TOAST ── */
+.toast-container { position: fixed; bottom: 28px; right: 28px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(20,24,36,0.96); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  min-width: 300px; max-width: 420px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  animation: toast-in 0.35s cubic-bezier(0.16,1,0.3,1) both;
+}
+.toast.removing { animation: toast-out 0.3s ease forwards; }
+@keyframes toast-in { from { opacity:0; transform: translateX(40px); } to { opacity:1; transform: translateX(0); } }
+@keyframes toast-out { to { opacity:0; transform: translateX(40px); } }
+.toast-icon { font-size: 1.1rem; }
+.toast-msg { font-size: 0.875rem; flex: 1; color: var(--text); }
+.toast.success .toast-icon::before { content: '✓'; color: var(--teal); }
+.toast.error .toast-icon::before { content: '✕'; color: var(--red); }
+.toast.info .toast-icon::before { content: 'ℹ'; color: var(--blue); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px); z-index: 200;
+  display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #0f1220;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 32px;
+  width: 100%; max-width: 500px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  animation: modal-in 0.35s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes modal-in { from { opacity:0; transform: scale(0.94) translateY(10px); } to { opacity:1; transform: none; } }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
+.modal-sub { color: var(--text2); font-size: 0.85rem; margin-bottom: 22px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 24px; justify-content: flex-end; }
+
+/* ── SEARCH / FILTERS ── */
+.search-bar {
+  display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.search-input {
+  flex: 1; min-width: 200px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px; color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem; outline: none;
+  transition: border-color var(--transition);
+}
+.search-input:focus { border-color: var(--gold); }
+
+/* ── ACTIVITY LOG ── */
+.activity-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0; margin-top: 5px;
+}
+.activity-info .action { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.activity-info .details { font-size: 0.8rem; color: var(--text2); margin-top: 1px; }
+.activity-info .time { font-size: 0.75rem; color: var(--text3); margin-top: 2px; }
+
+/* ── SECTION HEADING ── */
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--text); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-heading small {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem; color: var(--text3);
+  font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ── EXPERTISE TAGS ── */
+.expertise-input-wrap { display: flex; gap: 10px; }
+.expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.exp-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(155,127,232,0.12); color: var(--purple);
+  border: 1px solid rgba(155,127,232,0.25);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 0.8rem; font-weight: 600;
+}
+.exp-tag button { background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; font-size: 0.85rem; padding: 0; line-height: 1; }
+.exp-tag button:hover { opacity: 1; }
+
+/* ── WELCOME BANNER ── */
+.welcome-banner {
+  background: linear-gradient(135deg, rgba(201,147,58,0.12) 0%, rgba(0,201,167,0.06) 100%);
+  border: 1px solid rgba(201,147,58,0.2);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.welcome-banner h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--text); }
+.welcome-banner p { font-size: 0.84rem; color: var(--text2); margin-top: 3px; }
+
+/* ── ANON BADGE ── */
+.anon-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(224,85,85,0.1); color: var(--red);
+  border: 1px solid rgba(224,85,85,0.2);
+  border-radius: 20px; padding: 3px 10px; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+/* ── CAPACITY BAR ── */
+.capacity-bar { margin-top: 6px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.capacity-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal2)); border-radius: 3px; transition: width 0.5s ease; }
+
+/* ── MATCH REVEAL ── */
+.reveal-card {
+  border: 1px solid rgba(0,201,167,0.25);
+  background: rgba(0,201,167,0.04);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  margin-bottom: 10px;
+}
+.reveal-card.anon {
+  border-color: var(--border);
+  background: rgba(255,255,255,0.025);
+}
+
+/* ── LOADING SPINNER ── */
+.spinner {
+  width: 20px; height: 20px; border: 2px solid var(--border2);
+  border-top-color: var(--gold); border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Util */
+.flex-between { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.flex-gap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-4 { margin-bottom: 16px; }
+.text-sm { font-size: 0.82rem; color: var(--text2); }
+.text-xs { font-size: 0.75rem; color: var(--text3); }
+.text-gold { color: var(--gold); }
+.text-teal { color: var(--teal); }
+.text-red { color: var(--red); }
+.fw-6 { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-title" id="modalTitle">Confirm Action</div>
+    <div class="modal-sub" id="modalSub">Are you sure?</div>
+    <div id="modalBody"></div>
+    <div class="modal-actions" id="modalActions">
+      <button class="btn-outline btn" onclick="closeModal()">Cancel</button>
+      <button class="btn" id="modalConfirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: LOGIN
+════════════════════════════════════ -->
+<div class="view active auth-wrap" id="view-login">
+  <div class="auth-logo">Blind<span>Match</span></div>
+  <div class="auth-tagline">Project Approval & Matching System</div>
+
+  <div class="auth-card">
+    <div class="auth-title">Welcome back</div>
+    <div class="auth-subtitle">Sign in to your account to continue</div>
+
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" placeholder="your@email.ac.uk">
+      <div class="form-error" id="loginEmailErr"></div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••">
+      <div class="form-error" id="loginErr"></div>
+    </div>
+
+    <button class="btn btn-full mt-4" onclick="doLogin()">Sign In</button>
+
+    <div class="auth-link">
+      Don't have an account? <a href="#" onclick="showView('view-register')">Create account</a>
+    </div>
+    <div class="auth-link" style="margin-top:8px;">
+      <span class="text-xs">Demo: <span class="text-gold">admin@blindmatch.ac.uk</span> / <span class="text-gold">Admin123!</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: REGISTER
+════════════════════════════════════ -->
+<div class="view auth-wrap" id="view-register">
+  <div class="auth-logo">Blind<span>Match</span></div>
+  <div class="auth-tagline">Create Your Account</div>
+
+  <div class="auth-card wide">
+    <div class="auth-title">Create account</div>
+    <div class="auth-subtitle">Join the project matching system</div>
+
+    <div class="form-group mb-4">
+      <label>Select Your Role</label>
+      <div class="role-grid">
+        <div class="role-card" onclick="selectRole('Student',this)">
+          <div class="ri">🎓</div>
+          <div class="rl">Student</div>
+        </div>
+        <div class="role-card" onclick="selectRole('Supervisor',this)">
+          <div class="ri">👨‍🏫</div>
+          <div class="rl">Supervisor</div>
+        </div>
+        <div class="role-card" onclick="selectRole('ModuleLeader',this)">
+          <div class="ri">📋</div>
+          <div class="rl">Module Leader</div>
+        </div>
+        <div class="role-card" onclick="selectRole('Admin',this)">
+          <div class="ri">⚙️</div>
+          <div class="rl">Admin</div>
+        </div>
+      </div>
+      <div class="form-error" id="roleErr"></div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="regFirst" placeholder="John">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="regLast" placeholder="Smith">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="regEmail" placeholder="john@university.ac.uk">
+        <div class="form-error" id="regEmailErr"></div>
+      </div>
+      <div class="form-group">
+        <label>Student / Staff ID</label>
+        <input type="text" id="regId" placeholder="STU001">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Department</label>
+      <input type="text" id="regDept" placeholder="Computer Science">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPwd" placeholder="Min. 8 characters">
+        <div class="form-error" id="regPwdErr"></div>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="regPwd2" placeholder="Repeat password">
+        <div class="form-error" id="regPwd2Err"></div>
+      </div>
+    </div>
+    <div class="form-error" id="regErr"></div>
+
+    <button class="btn btn-full mt-4" onclick="doRegister()">Create Account</button>
+
+    <div class="auth-link">
+      Already have an account? <a href="#" onclick="showView('view-login')">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: STUDENT DASHBOARD
+════════════════════════════════════ -->
+<div class="view" id="view-student">
+  <div class="dash-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Blind<span>Match</span></div>
+        <small>Project Approval System</small>
+      </div>
+      <div class="sidebar-user">
+        <div class="avatar" style="background:rgba(0,201,167,0.15);color:var(--teal);" id="s-avatar">S</div>
+        <div class="sidebar-user-info">
+          <div class="name" id="s-name">Student</div>
+          <span class="role-badge" style="background:rgba(0,201,167,0.1);color:var(--teal);">Student</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Main Menu</div>
+        <div class="nav-item active" id="s-nav-overview" onclick="sPanel('overview')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </div>
+        <div class="nav-item" id="s-nav-submit" onclick="sPanel('submit')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Submit Proposal
+        </div>
+        <div class="nav-item" id="s-nav-matches" onclick="sPanel('matches')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          My Matches
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="nav-item" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Student Dashboard</div>
+        <div class="topbar-right">
+          <div class="avatar" style="background:rgba(0,201,167,0.15);color:var(--teal);" id="s-top-avatar">S</div>
+        </div>
+      </div>
+      <div class="content">
+
+        <!-- OVERVIEW -->
+        <div class="panel active" id="s-panel-overview">
+          <div class="welcome-banner">
+            <div>
+              <h2>Welcome back, <span id="s-welcome-name">Student</span> 👋</h2>
+              <p>Track your project proposals and match status below.</p>
+            </div>
+            <button class="btn btn-sm" onclick="sPanel('submit')">+ New Proposal</button>
+          </div>
+          <div class="stats-row grid-4" id="s-stats"></div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">My Project Proposals</div>
+              <button class="btn-teal btn-sm" onclick="sPanel('submit')">+ New Proposal</button>
+            </div>
+            <div class="card-body" id="s-projects-list">
+              <div class="empty-state"><div class="es-icon">📝</div><h3>No proposals yet</h3><p>Submit your first proposal to get started</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT PROPOSAL -->
+        <div class="panel" id="s-panel-submit">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Submit New Project Proposal</div>
+              <button class="btn-outline btn-sm" onclick="sPanel('overview')">← Back</button>
+            </div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Project Title *</label>
+                  <input type="text" id="p-title" placeholder="Enter a descriptive project title">
+                </div>
+                <div class="form-group">
+                  <label>Research Area *</label>
+                  <select id="p-area">
+                    <option value="">Select research area</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Abstract *</label>
+                <textarea id="p-abstract" rows="5" placeholder="Describe your project idea, objectives, methodology, and expected outcomes. This will be shown anonymously to supervisors."></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Technical Stack</label>
+                  <input type="text" id="p-stack" placeholder="e.g. Python, TensorFlow, React, PostgreSQL">
+                </div>
+                <div class="form-group">
+                  <label>Team Members (optional)</label>
+                  <input type="text" id="p-team" placeholder="e.g. STU001, STU002">
+                </div>
+              </div>
+              <div class="form-error" id="p-err"></div>
+              <div class="flex-gap mt-4">
+                <button class="btn" onclick="submitProposal()">Submit Proposal</button>
+                <button class="btn-outline" onclick="clearProposalForm()">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MY MATCHES -->
+        <div class="panel" id="s-panel-matches">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">My Matches</div>
+            </div>
+            <div class="card-body" id="s-matches-list">
+              <div class="empty-state"><div class="es-icon">🔗</div><h3>No matches yet</h3><p>Supervisors will express interest in your proposals</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: SUPERVISOR DASHBOARD
+════════════════════════════════════ -->
+<div class="view" id="view-supervisor">
+  <div class="dash-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Blind<span>Match</span></div>
+        <small>Project Approval System</small>
+      </div>
+      <div class="sidebar-user">
+        <div class="avatar" style="background:rgba(155,127,232,0.15);color:var(--purple);" id="sv-avatar">SV</div>
+        <div class="sidebar-user-info">
+          <div class="name" id="sv-name">Supervisor</div>
+          <span class="role-badge" style="background:rgba(155,127,232,0.1);color:var(--purple);">Supervisor</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Main Menu</div>
+        <div class="nav-item active" id="sv-nav-overview" onclick="svPanel('overview')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </div>
+        <div class="nav-item" id="sv-nav-projects" onclick="svPanel('projects')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Browse Projects
+        </div>
+        <div class="nav-item" id="sv-nav-interests" onclick="svPanel('interests')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          My Interests
+        </div>
+        <div class="nav-item" id="sv-nav-expertise" onclick="svPanel('expertise')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          My Expertise
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="nav-item" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Supervisor Dashboard</div>
+        <div class="avatar" style="background:rgba(155,127,232,0.15);color:var(--purple);" id="sv-top-avatar">SV</div>
+      </div>
+      <div class="content">
+
+        <!-- OVERVIEW -->
+        <div class="panel active" id="sv-panel-overview">
+          <div class="welcome-banner">
+            <div>
+              <h2>Welcome, <span id="sv-welcome-name">Supervisor</span></h2>
+              <p>Browse anonymous project proposals and express interest to initiate a match.</p>
+            </div>
+            <button class="btn btn-sm" onclick="svPanel('projects')">Browse Projects →</button>
+          </div>
+          <div class="stats-row grid-3" id="sv-stats"></div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Recent Projects Awaiting Review</div></div>
+            <div class="card-body" id="sv-recent-projects"></div>
+          </div>
+        </div>
+
+        <!-- BROWSE PROJECTS -->
+        <div class="panel" id="sv-panel-projects">
+          <div class="section-heading">Anonymous Project Pool <small>Identity hidden until match confirmed</small></div>
+          <div class="search-bar">
+            <input class="search-input" id="sv-search" placeholder="Search projects by title, abstract, or tech stack..." oninput="renderSvProjects()">
+            <select class="search-input" style="flex:0 0 200px;" id="sv-area-filter" onchange="renderSvProjects()">
+              <option value="">All Research Areas</option>
+            </select>
+          </div>
+          <div id="sv-projects-list"></div>
+        </div>
+
+        <!-- MY INTERESTS -->
+        <div class="panel" id="sv-panel-interests">
+          <div class="card">
+            <div class="card-header"><div class="card-title">My Expressed Interests</div></div>
+            <div class="card-body" id="sv-interests-list"></div>
+          </div>
+        </div>
+
+        <!-- EXPERTISE -->
+        <div class="panel" id="sv-panel-expertise">
+          <div class="card">
+            <div class="card-header"><div class="card-title">My Expertise & Capacity</div></div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Supervision Capacity (max students)</label>
+                <input type="number" id="sv-capacity" min="1" max="20" value="5" style="max-width:140px;">
+              </div>
+              <div class="form-group">
+                <label>Add Expertise Area</label>
+                <div class="expertise-input-wrap">
+                  <input type="text" id="sv-exp-input" placeholder="e.g. Machine Learning, Cybersecurity..." onkeydown="if(event.key==='Enter')addExpertiseTag()">
+                  <button class="btn btn-sm" onclick="addExpertiseTag()">Add</button>
+                </div>
+              </div>
+              <div class="expertise-tags" id="sv-exp-tags"></div>
+              <button class="btn mt-4" onclick="saveExpertise()">Save Expertise</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: MODULE LEADER DASHBOARD
+════════════════════════════════════ -->
+<div class="view" id="view-moduleleader">
+  <div class="dash-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Blind<span>Match</span></div>
+        <small>Project Approval System</small>
+      </div>
+      <div class="sidebar-user">
+        <div class="avatar" style="background:rgba(74,144,217,0.15);color:var(--blue);" id="ml-avatar">ML</div>
+        <div class="sidebar-user-info">
+          <div class="name" id="ml-name">Module Leader</div>
+          <span class="role-badge" style="background:rgba(74,144,217,0.1);color:var(--blue);">Module Leader</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Main Menu</div>
+        <div class="nav-item active" id="ml-nav-dashboard" onclick="mlPanel('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </div>
+        <div class="nav-item" id="ml-nav-matches" onclick="mlPanel('matches')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          All Matches
+        </div>
+        <div class="nav-item" id="ml-nav-areas" onclick="mlPanel('areas')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Research Areas
+        </div>
+        <div class="nav-item" id="ml-nav-proposals" onclick="mlPanel('proposals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          All Proposals
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="nav-item" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Module Leader Dashboard</div>
+        <div class="avatar" style="background:rgba(74,144,217,0.15);color:var(--blue);" id="ml-top-avatar">ML</div>
+      </div>
+      <div class="content">
+
+        <!-- DASHBOARD -->
+        <div class="panel active" id="ml-panel-dashboard">
+          <div class="stats-row grid-4" id="ml-stats"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="card">
+              <div class="card-header"><div class="card-title">Recent Activity</div></div>
+              <div class="card-body" id="ml-activity"></div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">Proposals by Research Area</div></div>
+              <div class="card-body" id="ml-area-breakdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALL MATCHES -->
+        <div class="panel" id="ml-panel-matches">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">All Matches</div>
+              <span class="text-xs">Module leaders can confirm or reject supervisor interests</span>
+            </div>
+            <div class="card-body" id="ml-matches-list"></div>
+          </div>
+        </div>
+
+        <!-- RESEARCH AREAS -->
+        <div class="panel" id="ml-panel-areas">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Add Research Area</div></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Area Name *</label>
+                  <input type="text" id="ml-area-name" placeholder="e.g. Machine Learning">
+                </div>
+                <div class="form-group">
+                  <label>Keywords</label>
+                  <input type="text" id="ml-area-keywords" placeholder="e.g. AI, neural networks, deep learning">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea id="ml-area-desc" rows="2" placeholder="Brief description of this research area"></textarea>
+              </div>
+              <button class="btn btn-sm" onclick="addResearchArea()">Add Research Area</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Research Areas</div></div>
+            <div class="card-body" id="ml-areas-list"></div>
+          </div>
+        </div>
+
+        <!-- ALL PROPOSALS -->
+        <div class="panel" id="ml-panel-proposals">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">All Student Proposals</div>
+              <span class="text-xs">Full visibility (identities revealed to Module Leader)</span>
+            </div>
+            <div class="card-body" id="ml-proposals-list"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  VIEW: ADMIN DASHBOARD
+════════════════════════════════════ -->
+<div class="view" id="view-admin">
+  <div class="dash-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Blind<span>Match</span></div>
+        <small>Project Approval System</small>
+      </div>
+      <div class="sidebar-user">
+        <div class="avatar" style="background:rgba(201,147,58,0.2);color:var(--gold);" id="ad-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="name" id="ad-name">Admin</div>
+          <span class="role-badge" style="background:rgba(201,147,58,0.1);color:var(--gold);">Administrator</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Main Menu</div>
+        <div class="nav-item active" id="ad-nav-dashboard" onclick="adPanel('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </div>
+        <div class="nav-item" id="ad-nav-users" onclick="adPanel('users')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          User Management
+        </div>
+        <div class="nav-item" id="ad-nav-activity" onclick="adPanel('activity')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Activity Log
+        </div>
+        <div class="nav-item" id="ad-nav-security" onclick="adPanel('security')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Security
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="nav-item" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Admin Dashboard</div>
+        <div class="avatar" style="background:rgba(201,147,58,0.2);color:var(--gold);" id="ad-top-avatar">A</div>
+      </div>
+      <div class="content">
+
+        <!-- DASHBOARD -->
+        <div class="panel active" id="ad-panel-dashboard">
+          <div class="stats-row grid-4" id="ad-stats"></div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Recent Activity</div></div>
+            <div class="card-body" id="ad-activity-preview"></div>
+          </div>
+        </div>
+
+        <!-- USERS -->
+        <div class="panel" id="ad-panel-users">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">User Management</div>
+              <div class="flex-gap">
+                <input class="search-input" style="max-width:220px;" id="ad-user-search" placeholder="Search users..." oninput="renderAdUsers()">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>Name</th><th>Email</th><th>Role</th><th>Dept.</th><th>ID</th><th>Status</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody id="ad-users-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY LOG -->
+        <div class="panel" id="ad-panel-activity">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Full Activity Log</div></div>
+            <div class="card-body" id="ad-full-activity"></div>
+          </div>
+        </div>
+
+        <!-- SECURITY -->
+        <div class="panel" id="ad-panel-security">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Security Settings</div></div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Min Password Length</label>
+                <input type="number" id="sec-pwd-len" value="8" min="6" max="32" style="max-width:120px;">
+              </div>
+              <div class="form-group">
+                <label>Session Timeout (hours)</label>
+                <input type="number" id="sec-session" value="8" min="1" max="72" style="max-width:120px;">
+              </div>
+              <div class="form-group">
+                <label>Allow Student Self-Registration</label>
+                <select id="sec-self-reg" style="max-width:200px;">
+                  <option value="1">Enabled</option>
+                  <option value="0">Disabled</option>
+                </select>
+              </div>
+              <button class="btn btn-sm mt-4" onclick="saveSecuritySettings()">Save Settings</button>
+              <hr class="divider">
+              <div class="section-heading" style="font-size:1.1rem;margin-bottom:10px;">Danger Zone</div>
+              <div class="flex-gap">
+                <button class="btn-danger btn" onclick="confirmClearAll()">Reset All Data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   DATA LAYER — localStorage
+══════════════════════════════════════════ */
+const DB = {
+  get(key) { try { return JSON.parse(localStorage.getItem('bm_'+key)) || null; } catch { return null; } },
+  set(key, val) { localStorage.setItem('bm_'+key, JSON.stringify(val)); },
+  users()      { return DB.get('users') || []; },
+  projects()   { return DB.get('projects') || []; },
+  matches()    { return DB.get('matches') || []; },
+  areas()      { return DB.get('areas') || []; },
+  logs()       { return DB.get('logs') || []; },
+  nextId(col)  { const k = 'nid_'+col; const v = (DB.get(k)||0)+1; DB.set(k,v); return v; },
+
+  addUser(u)   { const us = DB.users(); us.push(u); DB.set('users', us); },
+  saveUsers(us){ DB.set('users', us); },
+  addProject(p){ const ps = DB.projects(); ps.push(p); DB.set('projects', ps); },
+  saveProjects(ps){ DB.set('projects', ps); },
+  addMatch(m)  { const ms = DB.matches(); ms.push(m); DB.set('matches', ms); },
+  saveMatches(ms){ DB.set('matches', ms); },
+  addArea(a)   { const as = DB.areas(); as.push(a); DB.set('areas', as); },
+  saveAreas(as){ DB.saveAreas = as; },
+  log(userId, action, details) {
+    const logs = DB.logs();
+    logs.unshift({ id: DB.nextId('log'), userId, action, details, timestamp: new Date().toISOString() });
+    if (logs.length > 200) logs.splice(200);
+    DB.set('logs', logs);
+  }
+};
+
+/* ── SEED DEFAULT DATA ── */
+function seedData() {
+  if (DB.get('seeded')) return;
+  
+  // Admin user
+  DB.addUser({ id: DB.nextId('user'), firstName:'System', lastName:'Admin', email:'admin@blindmatch.ac.uk', passwordHash:'Admin123!', role:'Admin', studentStaffId:'ADM001', department:'IT Services', isActive:true, createdAt: new Date().toISOString(), lastLogin:null, expertiseAreas:'', supervisionCapacity:0 });
+  
+  // Research areas
+  const defaultAreas = [
+    { name:'Machine Learning & AI', description:'Projects involving neural networks, deep learning, NLP, and AI systems.', keywords:'AI, ML, neural networks, NLP, computer vision' },
+    { name:'Web Development', description:'Full-stack, frontend, and backend web application projects.', keywords:'HTML, CSS, JavaScript, React, Node.js' },
+    { name:'Data Science & Analytics', description:'Data analysis, visualisation, big data, and statistical modelling.', keywords:'Python, R, pandas, statistics, visualisation' },
+    { name:'Cybersecurity', description:'Network security, penetration testing, cryptography, and privacy.', keywords:'security, cryptography, ethical hacking, privacy' },
+    { name:'Mobile App Development', description:'iOS, Android, and cross-platform mobile applications.', keywords:'iOS, Android, Flutter, React Native, Swift' },
+    { name:'Cloud Computing', description:'Cloud architecture, serverless computing, DevOps, and infrastructure.', keywords:'AWS, Azure, GCP, Docker, Kubernetes' },
+    { name:'Internet of Things (IoT)', description:'Connected devices, embedded systems, and smart environments.', keywords:'IoT, Arduino, Raspberry Pi, sensors, embedded' },
+    { name:'Human-Computer Interaction', description:'UX research, accessibility, interface design, and usability.', keywords:'UX, UI, accessibility, usability, design' },
+  ];
+  defaultAreas.forEach(a => DB.addArea({ id: DB.nextId('area'), ...a, isActive:true, createdAt: new Date().toISOString() }));
+  
+  DB.log(1, 'System Initialised', 'BlindMatch system seeded with default data');
+  DB.set('seeded', true);
+}
+seedData();
+
+/* ══════════════════════════════════════════
+   APP STATE
+══════════════════════════════════════════ */
+let currentUser = null;
+let svExpertiseTags = [];
+
+/* ══════════════════════════════════════════
+   VIEW MANAGEMENT
+══════════════════════════════════════════ */
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
+function toast(msg, type='success') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span class="toast-icon"></span><span class="toast-msg">${msg}</span>`;
+  c.appendChild(t);
+  setTimeout(() => { t.classList.add('removing'); setTimeout(()=>t.remove(),300); }, 3200);
+}
+
+/* ══════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════ */
+let modalCb = null;
+function openModal(title, sub, body, confirmLabel, cb, danger=false) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalSub').textContent = sub;
+  document.getElementById('modalBody').innerHTML = body||'';
+  const btn = document.getElementById('modalConfirm');
+  btn.textContent = confirmLabel||'Confirm';
+  btn.className = danger ? 'btn btn-danger' : 'btn';
+  modalCb = cb;
+  btn.onclick = () => { closeModal(); if(modalCb) modalCb(); };
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+/* ══════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════ */
+let selectedRole = '';
+function selectRole(role, el) {
+  selectedRole = role;
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pwd   = document.getElementById('loginPassword').value;
+  document.getElementById('loginEmailErr').textContent = '';
+  document.getElementById('loginErr').textContent = '';
+  
+  if (!email) { document.getElementById('loginEmailErr').textContent = 'Email is required.'; return; }
+  if (!pwd)   { document.getElementById('loginErr').textContent = 'Password is required.'; return; }
+
+  const user = DB.users().find(u => u.email === email && u.isActive);
+  if (!user || user.passwordHash !== pwd) {
+    document.getElementById('loginErr').textContent = 'Invalid email or password.'; return;
+  }
+
+  currentUser = user;
+  // update last login
+  const users = DB.users();
+  const u = users.find(u=>u.id===user.id);
+  if(u){ u.lastLogin = new Date().toISOString(); DB.saveUsers(users); }
+  DB.log(user.id, 'Login', `${user.firstName} ${user.lastName} signed in`);
+
+  loadDashboard(user.role);
+}
+
+function doRegister() {
+  const first = document.getElementById('regFirst').value.trim();
+  const last  = document.getElementById('regLast').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const id_   = document.getElementById('regId').value.trim();
+  const dept  = document.getElementById('regDept').value.trim();
+  const pwd   = document.getElementById('regPwd').value;
+  const pwd2  = document.getElementById('regPwd2').value;
+
+  // Clear errors
+  ['regEmailErr','regPwdErr','regPwd2Err','regErr','roleErr'].forEach(id=>document.getElementById(id).textContent='');
+
+  let ok = true;
+  if (!selectedRole) { document.getElementById('roleErr').textContent = 'Please select a role.'; ok = false; }
+  if (!first||!last) { document.getElementById('regErr').textContent = 'First and last name are required.'; ok = false; }
+  if (!email)        { document.getElementById('regEmailErr').textContent = 'Email is required.'; ok = false; }
+  if (pwd.length < 8){ document.getElementById('regPwdErr').textContent = 'Password must be at least 8 characters.'; ok = false; }
+  if (pwd !== pwd2)  { document.getElementById('regPwd2Err').textContent = 'Passwords do not match.'; ok = false; }
+  if (!ok) return;
+
+  const existing = DB.users().find(u => u.email === email);
+  if (existing) { document.getElementById('regEmailErr').textContent = 'Email already registered.'; return; }
+
+  const user = {
+    id: DB.nextId('user'), firstName: first, lastName: last, email,
+    passwordHash: pwd, role: selectedRole,
+    studentStaffId: id_, department: dept,
+    isActive: true, createdAt: new Date().toISOString(),
+    lastLogin: null, expertiseAreas: '', supervisionCapacity: 5
+  };
+  DB.addUser(user);
+  DB.log(user.id, 'Account Created', `New ${selectedRole} account: ${first} ${last}`);
+
+  toast('Account created! Please sign in.', 'success');
+  showView('view-login');
+  document.getElementById('loginEmail').value = email;
+}
+
+function doLogout() {
+  if(currentUser) DB.log(currentUser.id, 'Logout', `${currentUser.firstName} ${currentUser.lastName} signed out`);
+  currentUser = null;
+  showView('view-login');
+  document.getElementById('loginPassword').value = '';
+}
+
+function loadDashboard(role) {
+  switch(role) {
+    case 'Student':      loadStudentDash(); showView('view-student'); break;
+    case 'Supervisor':   loadSupervisorDash(); showView('view-supervisor'); break;
+    case 'ModuleLeader': loadMLDash(); showView('view-moduleleader'); break;
+    case 'Admin':        loadAdminDash(); showView('view-admin'); break;
+  }
+}
+
+/* ══════════════════════════════════════════
+   STUDENT DASHBOARD
+══════════════════════════════════════════ */
+function sPanel(name) {
+  document.querySelectorAll('[id^="s-panel-"]').forEach(p=>p.classList.remove('active'));
+  document.getElementById('s-panel-'+name).classList.add('active');
+  document.querySelectorAll('[id^="s-nav-"]').forEach(n=>n.classList.remove('active'));
+  document.getElementById('s-nav-'+name)?.classList.add('active');
+  if(name==='overview') renderStudentOverview();
+  if(name==='submit')   populateResearchAreas('p-area');
+  if(name==='matches')  renderStudentMatches();
+}
+
+function loadStudentDash() {
+  const u = currentUser;
+  const init = (u.firstName[0]+(u.lastName[0]||'')).toUpperCase();
+  document.getElementById('s-avatar').textContent = init;
+  document.getElementById('s-top-avatar').textContent = init;
+  document.getElementById('s-name').textContent = u.firstName+' '+u.lastName;
+  document.getElementById('s-welcome-name').textContent = u.firstName;
+  sPanel('overview');
+}
+
+function renderStudentOverview() {
+  const uid = currentUser.id;
+  const projects = DB.projects().filter(p=>p.studentId===uid);
+  const stats = [
+    { label:'My Proposals', val: projects.length, type:'teal', icon:'📝' },
+    { label:'Under Review', val: projects.filter(p=>p.status==='UnderReview').length, type:'blue', icon:'🔍' },
+    { label:'Matched', val: projects.filter(p=>p.status==='Matched').length, type:'gold', icon:'🔗' },
+    { label:'Withdrawn', val: projects.filter(p=>p.status==='Withdrawn').length, type:'red', icon:'↩' },
+  ];
+  document.getElementById('s-stats').innerHTML = stats.map(s=>`
+    <div class="stat-card ${s.type}">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">${s.val}</div>
+      <div class="stat-icon">${s.icon}</div>
+    </div>
+  `).join('');
+
+  const list = document.getElementById('s-projects-list');
+  if (!projects.length) {
+    list.innerHTML = `<div class="empty-state"><div class="es-icon">📝</div><h3>No proposals yet</h3><p>Submit your first proposal to get started</p></div>`;
+    return;
+  }
+  const areas = DB.areas();
+  list.innerHTML = projects.map(p => {
+    const area = areas.find(a=>a.id===p.researchAreaId);
+    const techs = (p.technicalStack||'').split(',').filter(t=>t.trim());
+    const badgeClass = {Pending:'badge-pending',UnderReview:'badge-review',Matched:'badge-matched',Withdrawn:'badge-withdrawn'}[p.status]||'badge-pending';
+    const canDelete = p.status !== 'Matched';
+    return `
+      <div class="project-card">
+        <div class="project-card-top">
+          <h3>${esc(p.title)}</h3>
+          ${area ? `<span class="area-tag">${esc(area.name)}</span>` : ''}
+        </div>
+        <p>${esc(p.abstract.length>160 ? p.abstract.slice(0,160)+'...' : p.abstract)}</p>
+        <div class="project-card-footer">
+          <div class="tech-stack">${techs.map(t=>`<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
+          <div class="flex-gap">
+            <span class="badge ${badgeClass}">${p.status}</span>
+            ${canDelete ? `<button class="btn-danger btn-sm btn" onclick="deleteProject(${p.id})">Delete</button>` : ''}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderStudentMatches() {
+  const uid = currentUser.id;
+  const projects = DB.projects().filter(p=>p.studentId===uid);
+  const matches  = DB.matches();
+  const users    = DB.users();
+  const el = document.getElementById('s-matches-list');
+  const myMatches = matches.filter(m => projects.some(p=>p.id===m.projectId));
+  if (!myMatches.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">🔗</div><h3>No matches yet</h3><p>Supervisors will browse and express interest in your proposals</p></div>`;
+    return;
+  }
+  const areas = DB.areas();
+  el.innerHTML = myMatches.map(m => {
+    const proj = projects.find(p=>p.id===m.projectId);
+    const sup  = m.status==='Confirmed' || m.identityRevealed ? users.find(u=>u.id===m.supervisorId) : null;
+    const badgeClass = {Interested:'badge-interested',Confirmed:'badge-confirmed'}[m.status]||'badge-interested';
+    const area = proj ? areas.find(a=>a.id===proj.researchAreaId) : null;
+    return `
+      <div class="reveal-card ${m.status!=='Confirmed'?'anon':''}">
+        <div class="flex-between">
+          <div>
+            <div class="fw-6" style="color:var(--text)">${esc(proj?.title||'Unknown Project')}</div>
+            ${area ? `<span class="area-tag" style="margin-top:4px;display:inline-block">${esc(area.name)}</span>` : ''}
+          </div>
+          <span class="badge ${badgeClass}">${m.status}</span>
+        </div>
+        <div class="text-sm mt-4">
+          ${m.status==='Confirmed' && sup
+            ? `<span class="text-teal fw-6">✓ Matched with: ${esc(sup.firstName+' '+sup.lastName)}</span> <span class="text-xs">${esc(sup.department||'')}</span> · <span class="text-xs">${esc(sup.email)}</span>`
+            : `<span class="anon-chip">🔒 Anonymous</span> <span class="text-xs" style="margin-left:8px">Supervisor identity hidden until match confirmed</span>`
+          }
+        </div>
+        <div class="text-xs mt-4">Expressed on ${fmtDate(m.createdAt)}</div>
+      </div>`;
+  }).join('');
+}
+
+function populateResearchAreas(selectId) {
+  const sel = document.getElementById(selectId);
+  const areas = DB.areas().filter(a=>a.isActive);
+  sel.innerHTML = `<option value="">Select research area</option>` + areas.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
+}
+
+function submitProposal() {
+  const title = document.getElementById('p-title').value.trim();
+  const areaId = parseInt(document.getElementById('p-area').value);
+  const abstract = document.getElementById('p-abstract').value.trim();
+  const stack = document.getElementById('p-stack').value.trim();
+  const team  = document.getElementById('p-team').value.trim();
+  const err = document.getElementById('p-err');
+  err.textContent = '';
+  if (!title) { err.textContent = 'Project title is required.'; return; }
+  if (!areaId) { err.textContent = 'Please select a research area.'; return; }
+  if (!abstract) { err.textContent = 'Abstract is required.'; return; }
+  
+  const proj = {
+    id: DB.nextId('project'), title, abstract,
+    researchAreaId: areaId, technicalStack: stack,
+    teamMembers: team, studentId: currentUser.id,
+    status: 'Pending', isAnonymous: true,
+    createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
+  };
+  DB.addProject(proj);
+  DB.log(currentUser.id, 'Proposal Submitted', `"${title}" submitted for review`);
+  toast('Proposal submitted successfully!', 'success');
+  clearProposalForm();
+  sPanel('overview');
+}
+
+function clearProposalForm() {
+  ['p-title','p-abstract','p-stack','p-team'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('p-area').value='';
+  document.getElementById('p-err').textContent = '';
+}
+
+function deleteProject(id) {
+  openModal('Delete Proposal','This action cannot be undone. The proposal will be permanently removed.','','Delete',()=>{
+    const ps = DB.projects().filter(p=>p.id!==id);
+    DB.saveProjects(ps);
+    DB.log(currentUser.id,'Proposal Deleted',`Project #${id} deleted`);
+    toast('Project deleted.','success');
+    renderStudentOverview();
+  }, true);
+}
+
+/* ══════════════════════════════════════════
+   SUPERVISOR DASHBOARD
+══════════════════════════════════════════ */
+function svPanel(name) {
+  document.querySelectorAll('[id^="sv-panel-"]').forEach(p=>p.classList.remove('active'));
+  document.getElementById('sv-panel-'+name).classList.add('active');
+  document.querySelectorAll('[id^="sv-nav-"]').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sv-nav-'+name)?.classList.add('active');
+  if(name==='overview')  renderSvOverview();
+  if(name==='projects')  { populateSvAreaFilter(); renderSvProjects(); }
+  if(name==='interests') renderSvInterests();
+  if(name==='expertise') loadExpertise();
+}
+
+function loadSupervisorDash() {
+  const u = currentUser;
+  const init = (u.firstName[0]+(u.lastName[0]||'')).toUpperCase();
+  document.getElementById('sv-avatar').textContent = init;
+  document.getElementById('sv-top-avatar').textContent = init;
+  document.getElementById('sv-name').textContent = u.firstName+' '+u.lastName;
+  document.getElementById('sv-welcome-name').textContent = u.firstName;
+  svPanel('overview');
+}
+
+function renderSvOverview() {
+  const uid = currentUser.id;
+  const myInterests = DB.matches().filter(m=>m.supervisorId===uid);
+  const projects = DB.projects();
+  const available = projects.filter(p=>p.status==='Pending'||p.status==='UnderReview');
+  const users = DB.users().find(u=>u.id===uid);
+  const cap = users?.supervisionCapacity||5;
+  const confirmed = myInterests.filter(m=>m.status==='Confirmed').length;
+
+  document.getElementById('sv-stats').innerHTML = `
+    <div class="stat-card teal"><div class="stat-label">Available Projects</div><div class="stat-value">${available.length}</div><div class="stat-icon">📋</div></div>
+    <div class="stat-card purple"><div class="stat-label">My Interests</div><div class="stat-value">${myInterests.length}</div><div class="stat-icon">❤️</div></div>
+    <div class="stat-card gold"><div class="stat-label">Confirmed Matches</div><div class="stat-value">${confirmed}</div><div class="stat-icon">🔗</div></div>
+  `;
+  
+  const recent = available.slice(0,3);
+  const areas = DB.areas();
+  const rEl = document.getElementById('sv-recent-projects');
+  if(!recent.length) {
+    rEl.innerHTML = `<div class="empty-state"><div class="es-icon">📋</div><h3>No projects awaiting review</h3></div>`;
+    return;
+  }
+  rEl.innerHTML = recent.map(p=>{
+    const area = areas.find(a=>a.id===p.researchAreaId);
+    const alreadyInterested = myInterests.some(m=>m.projectId===p.id);
+    return `
+      <div class="project-card">
+        <div class="project-card-top">
+          <div>
+            <h3>${esc(p.title)}</h3>
+            <span class="anon-chip" style="margin-top:4px;display:inline-flex">🔒 Anonymous</span>
+          </div>
+          ${area ? `<span class="area-tag">${esc(area.name)}</span>` : ''}
+        </div>
+        <p>${esc(p.abstract.length>150?p.abstract.slice(0,150)+'...':p.abstract)}</p>
+        <div class="project-card-footer">
+          <span class="badge badge-${p.status.toLowerCase()==='pending'?'pending':'review'}">${p.status}</span>
+          ${alreadyInterested
+            ? `<span class="badge badge-interested">Interest Expressed ✓</span>`
+            : `<button class="btn-teal btn-sm btn" onclick="expressInterest(${p.id})">Express Interest</button>`}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function populateSvAreaFilter() {
+  const sel = document.getElementById('sv-area-filter');
+  const areas = DB.areas().filter(a=>a.isActive);
+  sel.innerHTML = `<option value="">All Research Areas</option>` + areas.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
+}
+
+function renderSvProjects() {
+  const uid = currentUser.id;
+  const search = (document.getElementById('sv-search')?.value||'').toLowerCase();
+  const areaFilter = document.getElementById('sv-area-filter')?.value;
+  const areas = DB.areas();
+  const myInterests = DB.matches().filter(m=>m.supervisorId===uid);
+  let projects = DB.projects().filter(p=>p.status==='Pending'||p.status==='UnderReview');
+
+  if (areaFilter) projects = projects.filter(p=>p.researchAreaId===parseInt(areaFilter));
+  if (search) projects = projects.filter(p =>
+    p.title.toLowerCase().includes(search) ||
+    p.abstract.toLowerCase().includes(search) ||
+    (p.technicalStack||'').toLowerCase().includes(search)
+  );
+
+  const el = document.getElementById('sv-projects-list');
+  if (!projects.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">🔍</div><h3>No matching projects</h3><p>Try adjusting your search or filters</p></div>`;
+    return;
+  }
+  el.innerHTML = projects.map(p => {
+    const area = areas.find(a=>a.id===p.researchAreaId);
+    const techs = (p.technicalStack||'').split(',').filter(t=>t.trim());
+    const alreadyInterested = myInterests.some(m=>m.projectId===p.id);
+    return `
+      <div class="project-card">
+        <div class="project-card-top">
+          <div>
+            <h3>${esc(p.title)}</h3>
+            <span class="anon-chip" style="margin-top:4px;display:inline-flex;margin-right:6px">🔒 Anonymous</span>
+            ${area ? `<span class="area-tag">${esc(area.name)}</span>` : ''}
+          </div>
+          <span class="badge badge-${p.status==='Pending'?'pending':'review'}">${p.status}</span>
+        </div>
+        <p style="margin-top:8px">${esc(p.abstract)}</p>
+        <div class="tech-stack" style="margin:10px 0">${techs.map(t=>`<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
+        <div class="project-card-footer">
+          <span class="text-xs">Submitted ${fmtDate(p.createdAt)}</span>
+          ${alreadyInterested
+            ? `<span class="badge badge-interested">Interest Expressed ✓</span>`
+            : `<button class="btn-teal btn-sm btn" onclick="expressInterest(${p.id})">Express Interest</button>`}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function expressInterest(projectId) {
+  const uid = currentUser.id;
+  const existing = DB.matches().find(m=>m.projectId===projectId&&m.supervisorId===uid);
+  if (existing) { toast('Already expressed interest in this project.','info'); return; }
+
+  const match = { id:DB.nextId('match'), projectId, supervisorId:uid, status:'Interested', identityRevealed:false, createdAt:new Date().toISOString(), confirmedAt:null };
+  DB.addMatch(match);
+
+  // update project status
+  const ps = DB.projects();
+  const p = ps.find(x=>x.id===projectId);
+  if (p && p.status==='Pending') { p.status='UnderReview'; DB.saveProjects(ps); }
+
+  DB.log(uid,'Interest Expressed',`Supervisor expressed interest in project #${projectId}`);
+  toast('Interest expressed! The Module Leader will review.','success');
+  renderSvProjects();
+}
+
+function renderSvInterests() {
+  const uid = currentUser.id;
+  const interests = DB.matches().filter(m=>m.supervisorId===uid);
+  const projects = DB.projects();
+  const areas = DB.areas();
+  const el = document.getElementById('sv-interests-list');
+  if (!interests.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">❤️</div><h3>No interests expressed</h3><p>Browse projects and express interest</p><button class="btn btn-sm" onclick="svPanel('projects')">Browse Projects</button></div>`;
+    return;
+  }
+  el.innerHTML = interests.map(m=>{
+    const p = projects.find(x=>x.id===m.projectId);
+    const area = p ? areas.find(a=>a.id===p.researchAreaId) : null;
+    const badgeClass = {Interested:'badge-interested',Confirmed:'badge-confirmed'}[m.status]||'badge-interested';
+    return `
+      <div class="project-card">
+        <div class="project-card-top">
+          <div>
+            <h3>${esc(p?.title||'Unknown Project')}</h3>
+            ${area ? `<span class="area-tag">${esc(area.name)}</span>` : ''}
+          </div>
+          <span class="badge ${badgeClass}">${m.status}</span>
+        </div>
+        <p>${esc((p?.abstract||'').slice(0,120)+'...')}</p>
+        <div class="text-xs mt-4">Expressed on ${fmtDate(m.createdAt)} ${m.confirmedAt?`· Confirmed on ${fmtDate(m.confirmedAt)}`:'· Awaiting confirmation'}</div>
+      </div>`;
+  }).join('');
+}
+
+function loadExpertise() {
+  const user = DB.users().find(u=>u.id===currentUser.id);
+  document.getElementById('sv-capacity').value = user?.supervisionCapacity||5;
+  svExpertiseTags = (user?.expertiseAreas||'').split(',').filter(t=>t.trim());
+  renderExpertiseTags();
+}
+
+function addExpertiseTag() {
+  const inp = document.getElementById('sv-exp-input');
+  const val = inp.value.trim();
+  if (!val || svExpertiseTags.includes(val)) { inp.value=''; return; }
+  svExpertiseTags.push(val);
+  inp.value = '';
+  renderExpertiseTags();
+}
+
+function removeExpertiseTag(tag) {
+  svExpertiseTags = svExpertiseTags.filter(t=>t!==tag);
+  renderExpertiseTags();
+}
+
+function renderExpertiseTags() {
+  document.getElementById('sv-exp-tags').innerHTML = svExpertiseTags.map(t=>
+    `<span class="exp-tag">${esc(t)}<button onclick="removeExpertiseTag('${esc(t)}')">×</button></span>`
+  ).join('');
+}
+
+function saveExpertise() {
+  const cap = parseInt(document.getElementById('sv-capacity').value)||5;
+  const users = DB.users();
+  const u = users.find(x=>x.id===currentUser.id);
+  if(u){ u.expertiseAreas = svExpertiseTags.join(','); u.supervisionCapacity = cap; DB.saveUsers(users); }
+  DB.log(currentUser.id,'Expertise Updated','Supervisor updated expertise and capacity');
+  toast('Expertise saved successfully!','success');
+}
+
+/* ══════════════════════════════════════════
+   MODULE LEADER DASHBOARD
+══════════════════════════════════════════ */
+function mlPanel(name) {
+  document.querySelectorAll('[id^="ml-panel-"]').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ml-panel-'+name).classList.add('active');
+  document.querySelectorAll('[id^="ml-nav-"]').forEach(n=>n.classList.remove('active'));
+  document.getElementById('ml-nav-'+name)?.classList.add('active');
+  if(name==='dashboard') renderMLDashboard();
+  if(name==='matches')   renderMLMatches();
+  if(name==='areas')     renderMLAreas();
+  if(name==='proposals') renderMLProposals();
+}
+
+function loadMLDash() {
+  const u = currentUser;
+  const init = (u.firstName[0]+(u.lastName[0]||'')).toUpperCase();
+  document.getElementById('ml-avatar').textContent = init;
+  document.getElementById('ml-top-avatar').textContent = init;
+  document.getElementById('ml-name').textContent = u.firstName+' '+u.lastName;
+  mlPanel('dashboard');
+}
+
+function renderMLDashboard() {
+  const projects = DB.projects();
+  const matches  = DB.matches();
+  const users    = DB.users();
+  const stats = [
+    { label:'Total Proposals', val: projects.length, type:'teal', icon:'📝' },
+    { label:'Matched Pairs', val: matches.filter(m=>m.status==='Confirmed').length, type:'gold', icon:'🔗' },
+    { label:'Awaiting Match', val: projects.filter(p=>p.status==='Pending'||p.status==='UnderReview').length, type:'blue', icon:'⏳' },
+    { label:'Active Supervisors', val: users.filter(u=>u.role==='Supervisor'&&u.isActive).length, type:'purple', icon:'👨‍🏫' },
+  ];
+  document.getElementById('ml-stats').innerHTML = stats.map(s=>`
+    <div class="stat-card ${s.type}"><div class="stat-label">${s.label}</div><div class="stat-value">${s.val}</div><div class="stat-icon">${s.icon}</div></div>
+  `).join('');
+
+  // recent activity
+  const logs = DB.logs().slice(0,6);
+  document.getElementById('ml-activity').innerHTML = logs.length ? logs.map(l=>activityItem(l)).join('') : `<div class="text-sm" style="color:var(--text3)">No recent activity</div>`;
+
+  // area breakdown
+  const areas = DB.areas();
+  document.getElementById('ml-area-breakdown').innerHTML = areas.map(a=>{
+    const cnt = projects.filter(p=>p.researchAreaId===a.id).length;
+    const pct = projects.length ? Math.round(cnt/projects.length*100) : 0;
+    return `
+      <div style="margin-bottom:14px">
+        <div class="flex-between mb-4"><span class="text-sm fw-6">${esc(a.name)}</span><span class="text-xs">${cnt} project${cnt!==1?'s':''}</span></div>
+        <div class="capacity-bar"><div class="capacity-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).join('') || `<div class="text-sm" style="color:var(--text3)">No research areas defined</div>`;
+}
+
+function renderMLMatches() {
+  const matches  = DB.matches();
+  const projects = DB.projects();
+  const users    = DB.users();
+  const areas    = DB.areas();
+  const el = document.getElementById('ml-matches-list');
+  if (!matches.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">🔗</div><h3>No matches yet</h3><p>Supervisors need to express interest in projects first</p></div>`;
+    return;
+  }
+  el.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Project</th><th>Area</th><th>Student</th><th>Supervisor</th><th>Status</th><th>Actions</th></tr></thead><tbody>` +
+  matches.map(m=>{
+    const p   = projects.find(x=>x.id===m.projectId);
+    const sup = users.find(u=>u.id===m.supervisorId);
+    const stu = p ? users.find(u=>u.id===p.studentId) : null;
+    const area = p ? areas.find(a=>a.id===p.researchAreaId) : null;
+    const badgeClass = {Interested:'badge-interested',Confirmed:'badge-confirmed'}[m.status]||'badge-interested';
+    return `<tr>
+      <td>${esc(p?.title||'Unknown')}</td>
+      <td>${area ? `<span class="area-tag">${esc(area.name)}</span>` : '-'}</td>
+      <td>${esc(stu?.firstName+' '+(stu?.lastName||''))}</td>
+      <td>${esc(sup?.firstName+' '+(sup?.lastName||''))}</td>
+      <td><span class="badge ${badgeClass}">${m.status}</span></td>
+      <td>
+        ${m.status==='Interested'
+          ? `<button class="btn-teal btn-sm btn" onclick="confirmMatch(${m.id})">Confirm</button>
+             <button class="btn-danger btn-sm btn" style="margin-left:5px" onclick="rejectMatch(${m.id})">Reject</button>`
+          : '<span class="text-xs text-teal">Confirmed ✓</span>'}
+      </td>
+    </tr>`;
+  }).join('') + `</tbody></table></div>`;
+}
+
+function confirmMatch(matchId) {
+  openModal('Confirm Match','This will confirm the supervisor-student match and reveal both identities.',``, 'Confirm Match', ()=>{
+    const ms = DB.matches();
+    const m = ms.find(x=>x.id===matchId);
+    if (m) {
+      m.status = 'Confirmed';
+      m.identityRevealed = true;
+      m.confirmedAt = new Date().toISOString();
+      DB.saveMatches(ms);
+      // update project
+      const ps = DB.projects();
+      const p = ps.find(x=>x.id===m.projectId);
+      if(p){ p.status='Matched'; DB.saveProjects(ps); }
+      DB.log(currentUser.id, 'Match Confirmed', `Match #${matchId} confirmed`);
+      toast('Match confirmed! Identities revealed.','success');
+      renderMLMatches();
+    }
+  });
+}
+
+function rejectMatch(matchId) {
+  openModal('Reject Match','This match interest will be removed.',``,'Reject',()=>{
+    const ms = DB.matches().filter(m=>m.id!==matchId);
+    DB.saveMatches(ms);
+    DB.log(currentUser.id,'Match Rejected',`Match #${matchId} rejected`);
+    toast('Match rejected.','info');
+    renderMLMatches();
+  },true);
+}
+
+function renderMLAreas() {
+  const areas = DB.areas();
+  const projects = DB.projects();
+  const el = document.getElementById('ml-areas-list');
+  if (!areas.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">🔬</div><h3>No research areas</h3><p>Add research areas above</p></div>`;
+    return;
+  }
+  el.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Name</th><th>Description</th><th>Keywords</th><th>Projects</th><th>Status</th><th>Actions</th></tr></thead><tbody>` +
+  areas.map(a=>{
+    const cnt = projects.filter(p=>p.researchAreaId===a.id).length;
+    return `<tr>
+      <td class="fw-6">${esc(a.name)}</td>
+      <td>${esc((a.description||'').slice(0,60)+'...')}</td>
+      <td><span class="tech-tag">${esc(a.keywords||'-')}</span></td>
+      <td>${cnt}</td>
+      <td><span class="badge ${a.isActive?'badge-active':'badge-inactive'}">${a.isActive?'Active':'Inactive'}</span></td>
+      <td><button class="btn-outline btn-sm btn" onclick="toggleArea(${a.id})">${a.isActive?'Deactivate':'Activate'}</button></td>
+    </tr>`;
+  }).join('') + `</tbody></table></div>`;
+}
+
+function addResearchArea() {
+  const name = document.getElementById('ml-area-name').value.trim();
+  const desc = document.getElementById('ml-area-desc').value.trim();
+  const kw   = document.getElementById('ml-area-keywords').value.trim();
+  if (!name) { toast('Area name is required.','error'); return; }
+  DB.addArea({ id:DB.nextId('area'), name, description:desc, keywords:kw, isActive:true, createdAt:new Date().toISOString() });
+  DB.log(currentUser.id,'Research Area Added',`New area: ${name}`);
+  toast(`"${name}" added successfully.`,'success');
+  document.getElementById('ml-area-name').value='';
+  document.getElementById('ml-area-desc').value='';
+  document.getElementById('ml-area-keywords').value='';
+  renderMLAreas();
+}
+
+function toggleArea(id) {
+  const as = DB.areas();
+  const a = as.find(x=>x.id===id);
+  if(a){ a.isActive=!a.isActive; DB.saveAreas(as); renderMLAreas(); }
+}
+
+function renderMLProposals() {
+  const projects = DB.projects();
+  const users = DB.users();
+  const areas = DB.areas();
+  const el = document.getElementById('ml-proposals-list');
+  if (!projects.length) {
+    el.innerHTML = `<div class="empty-state"><div class="es-icon">📝</div><h3>No proposals submitted yet</h3></div>`;
+    return;
+  }
+  el.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Title</th><th>Student</th><th>Research Area</th><th>Tech Stack</th><th>Status</th><th>Submitted</th></tr></thead><tbody>` +
+  projects.map(p=>{
+    const stu  = users.find(u=>u.id===p.studentId);
+    const area = areas.find(a=>a.id===p.researchAreaId);
+    const techs = (p.technicalStack||'').split(',').filter(t=>t.trim()).slice(0,3);
+    const badgeClass = {Pending:'badge-pending',UnderReview:'badge-review',Matched:'badge-matched',Withdrawn:'badge-withdrawn'}[p.status]||'badge-pending';
+    return `<tr>
+      <td class="fw-6">${esc(p.title)}</td>
+      <td>${esc(stu?.firstName+' '+(stu?.lastName||''))}<br><span class="text-xs">${esc(stu?.email||'')}</span></td>
+      <td>${area ? `<span class="area-tag">${esc(area.name)}</span>` : '-'}</td>
+      <td>${techs.map(t=>`<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</td>
+      <td><span class="badge ${badgeClass}">${p.status}</span></td>
+      <td class="text-xs">${fmtDate(p.createdAt)}</td>
+    </tr>`;
+  }).join('') + `</tbody></table></div>`;
+}
+
+/* ══════════════════════════════════════════
+   ADMIN DASHBOARD
+══════════════════════════════════════════ */
+function adPanel(name) {
+  document.querySelectorAll('[id^="ad-panel-"]').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ad-panel-'+name).classList.add('active');
+  document.querySelectorAll('[id^="ad-nav-"]').forEach(n=>n.classList.remove('active'));
+  document.getElementById('ad-nav-'+name)?.classList.add('active');
+  if(name==='dashboard') renderAdDashboard();
+  if(name==='users')     renderAdUsers();
+  if(name==='activity')  renderAdActivity();
+}
+
+function loadAdminDash() {
+  const u = currentUser;
+  const init = u.firstName[0].toUpperCase();
+  document.getElementById('ad-avatar').textContent = init;
+  document.getElementById('ad-top-avatar').textContent = init;
+  document.getElementById('ad-name').textContent = u.firstName+' '+u.lastName;
+  adPanel('dashboard');
+}
+
+function renderAdDashboard() {
+  const users = DB.users();
+  const projects = DB.projects();
+  const stats = [
+    { label:'Total Users', val: users.length, type:'teal', icon:'👥' },
+    { label:'Students', val: users.filter(u=>u.role==='Student').length, type:'blue', icon:'🎓' },
+    { label:'Supervisors', val: users.filter(u=>u.role==='Supervisor').length, type:'purple', icon:'👨‍🏫' },
+    { label:'Total Projects', val: projects.length, type:'gold', icon:'📝' },
+  ];
+  document.getElementById('ad-stats').innerHTML = stats.map(s=>`
+    <div class="stat-card ${s.type}"><div class="stat-label">${s.label}</div><div class="stat-value">${s.val}</div><div class="stat-icon">${s.icon}</div></div>
+  `).join('');
+
+  const logs = DB.logs().slice(0,8);
+  document.getElementById('ad-activity-preview').innerHTML = logs.length ? logs.map(l=>activityItem(l)).join('') : `<div class="text-sm">No activity yet</div>`;
+}
+
+function renderAdUsers() {
+  const search = (document.getElementById('ad-user-search')?.value||'').toLowerCase();
+  let users = DB.users();
+  if(search) users = users.filter(u =>
+    (u.firstName+' '+u.lastName).toLowerCase().includes(search) ||
+    u.email.toLowerCase().includes(search) ||
+    (u.role||'').toLowerCase().includes(search)
+  );
+  const roleColor = { Student:'color:var(--teal)', Supervisor:'color:var(--purple)', ModuleLeader:'color:var(--blue)', Admin:'color:var(--gold)' };
+  document.getElementById('ad-users-tbody').innerHTML = users.map(u=>`
+    <tr>
+      <td class="fw-6">${esc(u.firstName+' '+u.lastName)}</td>
+      <td>${esc(u.email)}</td>
+      <td><span style="${roleColor[u.role]||''};font-weight:600;font-size:0.82rem">${u.role}</span></td>
+      <td>${esc(u.department||'-')}</td>
+      <td>${esc(u.studentStaffId||'-')}</td>
+      <td><span class="badge ${u.isActive?'badge-active':'badge-inactive'}">${u.isActive?'Active':'Inactive'}</span></td>
+      <td>
+        ${u.id!==currentUser.id ? `
+          <button class="btn-outline btn-sm btn" onclick="toggleUser(${u.id})">${u.isActive?'Deactivate':'Activate'}</button>
+          ${u.role!=='Admin'?`<button class="btn-danger btn-sm btn" style="margin-left:5px" onclick="deleteUser(${u.id})">Delete</button>`:''}
+        ` : '<span class="text-xs text-gold">You</span>'}
+      </td>
+    </tr>
+  `).join('') || `<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:20px">No users found</td></tr>`;
+}
+
+function toggleUser(id) {
+  const users = DB.users();
+  const u = users.find(x=>x.id===id);
+  if(u){ u.isActive=!u.isActive; DB.saveUsers(users); DB.log(currentUser.id, u.isActive?'User Activated':'User Deactivated',`${u.email} ${u.isActive?'activated':'deactivated'}`); renderAdUsers(); toast(`User ${u.isActive?'activated':'deactivated'}.`,'info'); }
+}
+
+function deleteUser(id) {
+  openModal('Delete User','This will permanently remove the user and all their data. This cannot be undone.','','Delete',()=>{
+    const users = DB.users().filter(u=>u.id!==id);
+    DB.saveUsers(users);
+    const ps = DB.projects().filter(p=>p.studentId!==id);
+    DB.saveProjects(ps);
+    DB.log(currentUser.id,'User Deleted',`User #${id} deleted`);
+    toast('User deleted.','success');
+    renderAdUsers();
+  },true);
+}
+
+function renderAdActivity() {
+  const logs = DB.logs();
+  const users = DB.users();
+  document.getElementById('ad-full-activity').innerHTML = logs.length
+    ? logs.map(l=>activityItem(l,users)).join('')
+    : `<div class="empty-state"><div class="es-icon">📊</div><h3>No activity recorded</h3></div>`;
+}
+
+function confirmClearAll() {
+  openModal('Reset All Data','⚠️ This will permanently delete ALL users (except admins), projects, matches, and logs. This cannot be undone!','','Reset Everything',()=>{
+    DB.saveUsers(DB.users().filter(u=>u.role==='Admin'));
+    DB.saveProjects([]);
+    DB.saveMatches([]);
+    DB.set('logs',[]);
+    DB.log(currentUser.id,'System Reset','All non-admin data cleared');
+    toast('System data reset.','info');
+    renderAdDashboard();
+  },true);
+}
+
+function saveSecuritySettings() {
+  toast('Security settings saved.','success');
+}
+
+/* ══════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════ */
+function esc(str) {
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtDate(isoStr) {
+  if(!isoStr) return '-';
+  const d = new Date(isoStr);
+  return d.toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'});
+}
+
+function activityItem(log, users) {
+  const u = users ? users.find(x=>x.id===log.userId) : null;
+  const name = u ? u.firstName+' '+u.lastName : 'User #'+log.userId;
+  return `
+    <div class="activity-item">
+      <div class="activity-dot"></div>
+      <div class="activity-info">
+        <div class="action">${esc(log.action)}</div>
+        <div class="details">${esc(log.details||'')} ${u?`<span class="text-xs">· ${esc(name)}</span>`:''}
+        </div>
+        <div class="time">${fmtDate(log.timestamp)}</div>
+      </div>
+    </div>`;
+}
+
+/* ════════ KEYBOARD SHORTCUTS ════════ */
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') closeModal();
+  if (e.key==='Enter' && document.getElementById('view-login').classList.contains('active')) {
+    if(e.target.id==='loginEmail'||e.target.id==='loginPassword') doLogin();
+  }
+});
+</script>
+</body>
+</html>

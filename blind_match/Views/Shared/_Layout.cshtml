@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BlindMatch PAS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-user-secret"></i>BlindMatch PAS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"><span class="navbar-toggler-icon"></span></button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i>Home</a></li>
+                        @if (User.IsInRole("Student"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Projects" asp-action="Create"><i class="fas fa-plus-circle"></i>Submit Proposal</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Projects" asp-action="Index"><i class="fas fa-list"></i>My Projects</a></li>
+ }
+                        @if (User.IsInRole("Supervisor"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Projects" asp-action="BlindReview"><i class="fas fa-eye-slash"></i>Blind Review</a></li>
+                        }
+                        @if (User.IsInRole("ModuleLeader") || User.IsInRole("SystemAdmin"))
+                        {
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-cog"></i>Admin</a><ul class="dropdown-menu glass"><li><a class="dropdown-item" asp-controller="Coordinator" asp-action="Index">Dashboard</a></li><li><a class="dropdown-item" asp-controller="Coordinator" asp-action="ManageResearchAreas">Research Areas</a></li></ul></li>
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container"><main role="main" class="pb-5">@RenderBody()</main></div>
+    <footer class="footer"><div class="container text-center"><small>&copy; 2026 - BlindMatch PAS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></small></div></footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

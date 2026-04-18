@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ProjectApprovalSystem.Models.BlindProjectViewModel>
+<h1>Blind Review</h1>
+<div class="row">
+@foreach (var item in Model) {
+    <div class="col-md-4"><div class="card"><div class="card-body">
+        <h5>@item.Title</h5><p>@item.Abstract</p><p>@item.TechnicalStack</p>
+        <form asp-action="ExpressInterest" asp-route-id="@item.Id" method="post"><button type="submit" class="btn btn-success">Express Interest</button></form>
+    </div></div></div>
+}
+</div>

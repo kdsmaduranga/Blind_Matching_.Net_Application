@@ -1,0 +1,629 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\projectapprovalsystem.cspro||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\projectapprovalsystem.cspro||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\coordinator\\manageresearchareas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\coordinator\\manageresearchareas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\areas\\identity\\pages\\completeprofile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\areas\\identity\\pages\\completeprofile.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\areas\\identity\\pages\\completeprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\areas\\identity\\pages\\completeprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\coordinator\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\coordinator\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\blindreview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\blindreview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\controllers\\coordinatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\controllers\\coordinatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\blindprojectviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\blindprojectviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\researcharea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\researcharea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\projectapprovalsystem.cspro||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\projectapprovalsystem.cspro||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\projects\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\projects\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|c:\\users\\user\\desktop\\sdtp\\blind_match\\blind_match\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E06EDCF6-D674-45DA-8144-48D1D0F009BF}|blind_match\\blind_match.csproj|solutionrelative:blind_match\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\appsettings.json",
+              "RelativeDocumentMoniker": "blind_match\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\appsettings.json",
+              "RelativeToolTip": "blind_match\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-16T09:22:24.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Program.cs",
+              "RelativeDocumentMoniker": "blind_match\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Program.cs",
+              "RelativeToolTip": "blind_match\\Program.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAuwGIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:21:58.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "blind_match\\Controllers\\ProjectsController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\ProjectsController.cs",
+              "RelativeToolTip": "blind_match\\Controllers\\ProjectsController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwHYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:26:32.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Details.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\Details.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Details.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\Details.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAuwDsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:30:35.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAwwBYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:37:01.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProjectApprovalSystem.cspro",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\ProjectApprovalSystem.cspro",
+              "RelativeDocumentMoniker": "blind_match\\ProjectApprovalSystem.cspro",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\ProjectApprovalSystem.cspro",
+              "RelativeToolTip": "blind_match\\ProjectApprovalSystem.cspro",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-16T22:39:58.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "blind_match\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\appsettings.Development.json",
+              "RelativeToolTip": "blind_match\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-16T20:44:19.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "blind_match\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "blind_match\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAowIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-16T09:46:13.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Project.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\Project.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\Project.cs",
+              "RelativeToolTip": "blind_match\\Models\\Project.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAmwCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:28:00.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T19:49:53.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T22:12:51.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ManageResearchAreas.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Coordinator\\ManageResearchAreas.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Coordinator\\ManageResearchAreas.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Coordinator\\ManageResearchAreas.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Coordinator\\ManageResearchAreas.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:32:00.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Create.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\Create.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Create.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\Create.cshtml",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:30:23.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Edit.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Edit.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\Edit.cshtml",
+              "ViewState": "AgIAACkAAAAAAAAAAAAmwD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:30:45.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAmwBgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:46:28.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T11:24:09.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:29:30.463Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAkwCwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:45:53.11Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CompleteProfile.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml.cs",
+              "RelativeDocumentMoniker": "blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml.cs",
+              "RelativeToolTip": "blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA3wCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T07:39:22.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CompleteProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml",
+              "RelativeToolTip": "blind_match\\Areas\\Identity\\Pages\\CompleteProfile.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwBUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-17T07:38:33.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:33:51.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "blind_match\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:33:39.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Coordinator\\Index.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Coordinator\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Coordinator\\Index.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Coordinator\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:31:42.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "BlindReview.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\BlindReview.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\BlindReview.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\BlindReview.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\BlindReview.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAkwBoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:31:07.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Index.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Index.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\Index.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwBYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:30:10.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CoordinatorController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\CoordinatorController.cs",
+              "RelativeDocumentMoniker": "blind_match\\Controllers\\CoordinatorController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\CoordinatorController.cs",
+              "RelativeToolTip": "blind_match\\Controllers\\CoordinatorController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAkwBgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:26:49.718Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "blind_match\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "blind_match\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:26:16.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "blind_match\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:51:32.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "BlindProjectViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\BlindProjectViewModel.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\BlindProjectViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\BlindProjectViewModel.cs",
+              "RelativeToolTip": "blind_match\\Models\\BlindProjectViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:28:50.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Match.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\Match.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\Match.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\Match.cs",
+              "RelativeToolTip": "blind_match\\Models\\Match.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:28:25.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ResearchArea.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ResearchArea.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\ResearchArea.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ResearchArea.cs",
+              "RelativeToolTip": "blind_match\\Models\\ResearchArea.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:28:12.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "blind_match\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:27:49.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "blind_match\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "blind_match\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:27:17.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "blind_match\\Models\\RegisterViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Models\\RegisterViewModel.cs",
+              "RelativeToolTip": "blind_match\\Models\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAmwA8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:28:38.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "blind_match\\Data\\DbInitializer.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "blind_match\\Data\\DbInitializer.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T09:27:31.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ProjectApprovalSystem.cspro",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\ProjectApprovalSystem.cspro",
+              "RelativeDocumentMoniker": "blind_match\\ProjectApprovalSystem.cspro",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\ProjectApprovalSystem.cspro",
+              "RelativeToolTip": "blind_match\\ProjectApprovalSystem.cspro",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-16T10:54:42.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Delete.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Projects\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Projects\\Delete.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Projects\\Delete.cshtml",
+              "ViewState": "AgIAAAsAAAAAAAAAAIBpwCUAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:30:56.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "blind_match\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\SDTP\\blind_match\\blind_match\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "blind_match\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T09:44:10.31Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

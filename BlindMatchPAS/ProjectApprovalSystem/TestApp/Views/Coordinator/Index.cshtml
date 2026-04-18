@@ -1,0 +1,4 @@
+﻿@model IEnumerable<ProjectApprovalSystem.Models.Match>
+<h1>All Matches</h1>
+<table class="table"><thead><tr><th>Project</th><th>Student</th><th>Supervisor</th></tr></thead>
+<tbody>@foreach (var m in Model) { <tr><td>@m.Project.Title</td><td>@m.Project.Student?.FullName</td><td>@m.Supervisor?.FullName</td></tr> }</tbody></table>

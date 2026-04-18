@@ -1,0 +1,50 @@
+﻿@model ProjectApprovalSystem.Models.Project
+@{
+    ViewData["Title"] = "Submit Proposal";
+}
+<h1 class="mb-4">Submit New Project Proposal</h1>
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Title" class="form-control" placeholder="Title" />
+                <label asp-for="Title"></label>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <textarea asp-for="Abstract" class="form-control" placeholder="Abstract" style="height:120px"></textarea>
+                <label asp-for="Abstract"></label>
+                <span asp-validation-for="Abstract" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="TechnicalStack" class="form-control" placeholder="Tech Stack" />
+                <label asp-for="TechnicalStack"></label>
+                <span asp-validation-for="TechnicalStack" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="ResearchAreaId" class="form-select" asp-items="ViewBag.ResearchAreaId"></select>
+                <label asp-for="ResearchAreaId">Research Area</label>
+                <span asp-validation-for="ResearchAreaId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Proposal Document (PDF only, max 5MB)</label>
+                <input type="file" name="proposalFile" class="form-control" accept=".pdf" />
+                <small class="text-muted">Upload your detailed project proposal.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane me-2"></i>Submit Proposal
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

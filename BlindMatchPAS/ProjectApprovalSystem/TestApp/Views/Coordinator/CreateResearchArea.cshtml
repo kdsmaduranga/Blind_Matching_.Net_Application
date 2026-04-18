@@ -1,0 +1,6 @@
+﻿@model ProjectApprovalSystem.Models.ResearchArea
+<h1>Create Research Area</h1>
+<form asp-action="CreateResearchArea"><div asp-validation-summary="ModelOnly"></div>
+<div class="form-group"><label asp-for="Name"></label><input asp-for="Name" class="form-control" /></div>
+<div class="form-group"><label asp-for="Description"></label><textarea asp-for="Description" class="form-control"></textarea></div>
+<button type="submit" class="btn btn-primary">Create</button></form>

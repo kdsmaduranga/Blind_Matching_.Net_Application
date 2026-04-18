@@ -1,0 +1,4 @@
+﻿@model IEnumerable<ProjectApprovalSystem.Models.ResearchArea>
+<h1>Research Areas</h1><p><a asp-action="CreateResearchArea" class="btn btn-primary">Add New</a></p>
+<table class="table"><thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tbody>@foreach (var a in Model) { <tr><td>@a.Name</td><td>@a.Description</td></tr> }</tbody></table>
