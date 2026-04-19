@@ -62,10 +62,8 @@ Navigate to `https://localhost:5053` in your browser.
 
 > _Screenshots coming soon_
 
-<!-- 
   Add screenshots here once available:
   ![Create Account](img/create.png)
   ![Login](img/login.png)
   ![Admin Dashboard1](img/sec.png)
   ![Admin Dashboard2](img/user.png)
--->
